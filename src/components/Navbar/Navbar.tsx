@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -39,14 +38,18 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#111111] text-white">
-      <nav className="mx-auto flex min-h-[70px] max-w-7xl items-center justify-between gap-3 px-4 sm:px-5 md:min-h-[76px] md:px-8">
+      <nav
+        aria-label="Main navigation"
+        className="mx-auto flex min-h-[70px] max-w-7xl items-center justify-between gap-3 px-4 sm:px-5 md:min-h-[76px] md:px-8"
+      >
         <Link
           href="/"
+          aria-label="FITLOG home"
           className="flex shrink-0 items-center gap-2 sm:gap-3"
         >
           <Image
             src={logo}
-            alt="FitLog Logo"
+            alt="FITLOG Logo"
             width={42}
             height={42}
             priority
@@ -61,6 +64,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-6 md:flex lg:gap-8">
           <Link
             href="/"
+            aria-current={isWorkoutActive ? "page" : undefined}
             className={`py-7 text-sm font-bold uppercase tracking-wider transition ${
               isWorkoutActive
                 ? "text-[#ccff00]"
@@ -72,6 +76,7 @@ export default function Navbar() {
 
           <Link
             href="/my-plan"
+            aria-current={isMyPlanActive ? "page" : undefined}
             className={`py-7 text-sm font-bold uppercase tracking-wider transition ${
               isMyPlanActive
                 ? "text-[#ccff00]"
@@ -85,10 +90,10 @@ export default function Navbar() {
         <div className="flex items-center gap-3 sm:gap-4">
           <Link
             href="/my-plan"
+            aria-label={`Today's plan with ${planCount} workouts`}
             className="flex items-center gap-2 text-xs font-black uppercase tracking-wide text-white transition hover:text-[#ccff00] sm:text-sm"
           >
             <span>Plan</span>
-
             <span className="flex h-7 min-w-7 items-center justify-center rounded-lg bg-[#ccff00] px-2 text-xs font-black text-black">
               {planCount}
             </span>
@@ -96,10 +101,10 @@ export default function Navbar() {
 
           <Link
             href="/my-plan"
+            aria-label={`Saved workouts with ${savedCount} workouts`}
             className="flex items-center gap-2 text-xs font-black uppercase tracking-wide text-white transition hover:text-[#ccff00] sm:text-sm"
           >
             <span>Saved</span>
-
             <span className="flex h-7 min-w-7 items-center justify-center rounded-lg border border-white/40 px-2 text-xs font-black text-white">
               {savedCount}
             </span>
@@ -107,9 +112,13 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <div className="flex border-t border-white/10 md:hidden">
+      <div
+        className="flex border-t border-white/10 md:hidden"
+        aria-label="Mobile navigation"
+      >
         <Link
           href="/"
+          aria-current={isWorkoutActive ? "page" : undefined}
           className={`flex flex-1 items-center justify-center py-3 text-xs font-black uppercase tracking-wider ${
             isWorkoutActive
               ? "bg-[#ccff00] text-black"
@@ -121,6 +130,7 @@ export default function Navbar() {
 
         <Link
           href="/my-plan"
+          aria-current={isMyPlanActive ? "page" : undefined}
           className={`flex flex-1 items-center justify-center py-3 text-xs font-black uppercase tracking-wider ${
             isMyPlanActive
               ? "bg-[#ccff00] text-black"
