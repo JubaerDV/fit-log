@@ -14,7 +14,7 @@ export default function WorkoutCard({
     <Link
       href={`/details/${workout.id}`}
       aria-label={`View details for ${workout.name}`}
-      className="group block overflow-hidden rounded-2xl border border-white/10 bg-[#111111] shadow-lg transition duration-300 hover:-translate-y-1 hover:border-white/20 focus:outline-none focus:ring-2 focus:ring-[#ccff00] focus:ring-offset-2 focus:ring-offset-black"
+      className="group block overflow-hidden rounded-2xl border border-white/10 bg-[#151515] shadow-lg transition duration-300 hover:-translate-y-1 hover:border-white/20 focus:outline-none focus:ring-2 focus:ring-[#ccff00] focus:ring-offset-2 focus:ring-offset-black"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-[#0b0b0b]">
         <Image
@@ -27,12 +27,23 @@ export default function WorkoutCard({
       </div>
 
       <div className="p-5">
-        <h2 className="text-xl font-black uppercase text-white">
+        <div className="flex flex-wrap gap-2">
+          {workout.muscleGroups.map((muscle) => (
+            <span
+              key={muscle}
+              className="rounded-full border border-[#ccff00]/30 bg-[#ccff00]/10 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-[#ccff00]"
+            >
+              {muscle}
+            </span>
+          ))}
+        </div>
+
+        <h2 className="mt-4 text-xl font-black uppercase leading-tight text-white">
           {workout.name}
         </h2>
 
-        <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-gray-500">
-          Full Body
+        <p className="mt-2 text-sm font-medium text-gray-400">
+          {workout.equipment}
         </p>
 
         <div className="mt-5 grid grid-cols-3 border-t border-white/5 pt-4">

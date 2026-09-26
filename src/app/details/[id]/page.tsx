@@ -66,7 +66,7 @@ export default async function WorkoutDetailsPage({
                 </h2>
 
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {workout.muscleGroups.map((muscle) => (
+                  {workout.muscleGroups.map((muscle: string) => (
                     <span
                       key={muscle}
                       className="rounded-lg bg-[#ccff00] px-3 py-2 text-sm font-semibold text-black"
@@ -141,9 +141,9 @@ export default async function WorkoutDetailsPage({
 
                 <ol className="mt-5 space-y-4">
                   {workout.instructions.map(
-                    (instruction, index) => (
+                    (instruction: string, index: number) => (
                       <li
-                        key={instruction}
+                        key={`${instruction}-${index}`}
                         className="flex gap-4"
                       >
                         <span className="shrink-0 pt-1 text-sm font-black text-white">

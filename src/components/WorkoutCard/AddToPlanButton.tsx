@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import type { Workout } from "@/types/workout";
 import { addToPlan, getPlan } from "@/lib/plan";
@@ -13,28 +13,21 @@ interface AddToPlanButtonProps {
 export default function AddToPlanButton({
   workout,
 }: AddToPlanButtonProps) {
-  const [added, setAdded] = useState(() =>
-    getPlan().some((item) => item.id === workout.id)
-  );
-
+  const [plan, setPlan] = useState<Workout[]>([]);
+  const [isReady, setIsReady] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 
-  const handleAdd = () => {
-    if (added) {
-      setToastMessage("Already added to Today's Plan");
-      setShowToast(true);
+  useEffect(() => {
+    setPlan(getPlan());
+    setIsReady(true);
+  }, []);
 
-      setTimeout(() => {
-        setShowToast(false);
-      }, 2500);
+  const added = isReady && plan.some((item) => item.id === workout.id);
+  const planFull = isReady && plan.length >= 5 && !added;
 
-      return;
-    }
-
-    addToPlan(workout);
-    setAdded(true);
-    setToastMessage("Added to Today's Plan");
+  const showMessage = (message: string) => {
+    setToastMessage(message);
     setShowToast(true);
 
     setTimeout(() => {
@@ -42,14 +35,52 @@ export default function AddToPlanButton({
     }, 2500);
   };
 
+  const handleAdd = () => {
+    const currentPlan = getPlan();
+
+    if (currentPlan.some((item) => item.id === workout.id)) {
+      setPlan(currentPlan);
+      showMessage("Already added to Today's Plan");
+      return;
+    }
+
+    if (currentPlan.length >= 5) {
+      setPlan(currentPlan);
+      showMessage("Today's Plan is full. Maximum 5 workouts.");
+      return;
+    }
+
+    addToPlan(workout);
+
+    const updatedPlan = getPlan();
+
+    setPlan(updatedPlan);
+    showMessage("Added to Today's Plan");
+  };
+
   return (
     <>
       <button
         type="button"
         onClick={handleAdd}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#ccff00] px-4 py-3 text-sm font-bold text-black transition hover:bg-white"
+        disabled={!isReady || planFull}
+        className={`flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold transition ${
+          !isReady
+            ? "cursor-wait bg-gray-700 text-gray-400"
+            : planFull
+              ? "cursor-not-allowed bg-gray-700 text-gray-400"
+              : added
+                ? "bg-[#1a1a1a] text-[#ccff00]"
+                : "bg-[#ccff00] text-black hover:bg-white"
+        }`}
       >
-        {added ? "Added to Today's Plan" : "+ Add to Today's Plan"}
+        {!isReady
+          ? "Loading..."
+          : added
+            ? "Added to Today's Plan"
+            : planFull
+              ? "Plan Full — 5/5"
+              : "+ Add to Today's Plan"}
       </button>
 
       {showToast && <Toast message={toastMessage} />}
