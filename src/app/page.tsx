@@ -15,13 +15,19 @@ type SortOption =
 
 export default function Home() {
   const [workouts, setWorkouts] = useState<Workout[]>([]);
+  const [error, setError] = useState("");
+
   const [sortOption, setSortOption] =
     useState<SortOption>("default");
 
   useEffect(() => {
     const loadWorkouts = async () => {
-      const data = await getWorkouts();
-      setWorkouts(data);
+      try {
+        const data = await getWorkouts();
+        setWorkouts(data);
+      } catch {
+        setError("Unable to load workouts. Please try again.");
+      }
     };
 
     loadWorkouts();
@@ -102,7 +108,17 @@ export default function Home() {
             </div>
           </div>
 
-          {sortedWorkouts.length > 0 && (
+          {error ? (
+            <div className="rounded-2xl border border-red-500/20 bg-[#111111] px-5 py-16 text-center">
+              <p className="text-lg font-bold text-red-400">
+                {error}
+              </p>
+
+              <p className="mt-2 text-sm text-gray-500">
+                Please refresh the page and try again.
+              </p>
+            </div>
+          ) : sortedWorkouts.length > 0 ? (
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
               {sortedWorkouts.map((workout) => (
                 <WorkoutCard
@@ -111,12 +127,10 @@ export default function Home() {
                 />
               ))}
             </div>
-          )}
-
-          {sortedWorkouts.length === 0 && (
+          ) : (
             <div className="rounded-2xl border border-dashed border-gray-700 bg-[#111111] px-5 py-16 text-center">
               <p className="text-lg font-bold text-gray-400">
-                No workouts found.
+                Loading workouts...
               </p>
             </div>
           )}
