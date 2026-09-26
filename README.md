@@ -1,61 +1,51 @@
 # 🏋️ FITLOG — Workout Library
 
-A modern and responsive workout library web application built with **Next.js, TypeScript, React, and Tailwind CSS**.
-
-FITLOG allows users to browse workouts, view detailed workout information, create a daily workout plan, save workouts for later, and track completed exercises.
-
----
-
-## 🔗 Live Demo
-
-Coming Soon
-
-## 📦 GitHub Repository
-
-https://github.com/JubaerDV/fit-log
-
----
-
-## ✨ Features
-
-* 🏠 Modern and responsive home page
-* 🏋️ Browse workout library
-* 🔍 View detailed workout information
-* ➕ Add workouts to Today's Plan
-* 🔖 Save workouts for later
-* ✅ Mark workouts as completed
-* 📋 Manage Today's Plan
-* ⏳ Loading state
-* ❌ Error handling
-* 🚫 Custom 404 / Not Found page
-* 📱 Responsive design for different screen sizes
-* 🎨 Modern UI using Tailwind CSS
+> A modern and responsive workout library web application built to help users discover workouts, view detailed exercise information, create daily workout plans, save workouts for later, and track completed exercises.
 
 ---
 
 ## 🛠️ Technologies Used
 
-* Next.js
-* React
-* TypeScript
-* Tailwind CSS
-* JavaScript
-* HTML
-* CSS
-* REST API
-* Git
-* GitHub
+* ⚛️ **React**
+* ▲ **Next.js**
+* 🔷 **TypeScript**
+* 🎨 **Tailwind CSS**
+* 🔌 **REST API**
+* 🐙 **Git & GitHub**
 
 ---
 
-## 📂 Project Structure
+## ✨ Key Features
 
-```text
-fit-log/
-├── public/
-├── src/
-│   ├── app/
-│   │   ├── details/
-│   │   │   └── [id]/
-│   │   │
-```
+### 🏋️ 1. Workout Library
+
+Browse a collection of workouts with a clean and user-friendly interface. Users can easily explore different available exercises.
+
+### 🔍 2. Workout Details
+
+View detailed information about each workout through a dynamic workout details page.
+
+### 📋 3. Today's Plan
+
+Add workouts to **Today's Plan** and manage selected workouts from one convenient place.
+
+### 🔖 4. Save for Later
+
+Save workouts for later and quickly access saved exercises whenever needed.
+
+### ✅ 5. Workout Tracking
+
+Mark completed workouts and keep track of finished exercises as part of the workout experience.
+
+---
+
+## 🔗 Project Repository
+
+🐙 **GitHub:**
+https://github.com/JubaerDV/fit-log
+
+---
+
+## 🎯 Project Purpose
+
+FITLOG was developed as an assignment project to demonstrate practical skills in **Next.js, React, TypeScript, Tailwind CSS, API integration, and modern web development**.
