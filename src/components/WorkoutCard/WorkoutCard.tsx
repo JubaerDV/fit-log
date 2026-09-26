@@ -13,12 +13,13 @@ export default function WorkoutCard({
   return (
     <Link
       href={`/details/${workout.id}`}
-      className="group block overflow-hidden rounded-2xl border border-white/10 bg-[#111111] shadow-lg transition duration-300 hover:-translate-y-1 hover:border-white/20"
+      aria-label={`View details for ${workout.name}`}
+      className="group block overflow-hidden rounded-2xl border border-white/10 bg-[#111111] shadow-lg transition duration-300 hover:-translate-y-1 hover:border-white/20 focus:outline-none focus:ring-2 focus:ring-[#ccff00] focus:ring-offset-2 focus:ring-offset-black"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-[#0b0b0b]">
         <Image
           src={workout.image}
-          alt={workout.name}
+          alt={`${workout.name} workout`}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition duration-500 group-hover:scale-105"
