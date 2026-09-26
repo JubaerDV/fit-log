@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import AddToPlanButton from "@/components/WorkoutCard/AddToPlanButton";
 import SaveForLaterButton from "@/components/WorkoutCard/SaveForLaterButton";
@@ -15,8 +16,17 @@ export default async function WorkoutDetailsPage({
   params,
 }: WorkoutDetailsPageProps) {
   const { id } = await params;
+  const workoutId = Number(id);
 
-  const workout = await getWorkout(Number(id));
+  if (Number.isNaN(workoutId)) {
+    notFound();
+  }
+
+  const workout = await getWorkout(workoutId);
+
+  if (!workout) {
+    notFound();
+  }
 
   return (
     <main className="min-h-screen bg-black px-4 py-10 text-white sm:px-5 md:px-8 md:py-14">
@@ -121,7 +131,6 @@ export default async function WorkoutDetailsPage({
 
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 <AddToPlanButton workout={workout} />
-
                 <SaveForLaterButton workout={workout} />
               </div>
 
