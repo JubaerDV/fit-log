@@ -296,23 +296,4 @@ Add your deployed Vercel website link here.
 
 **Jubaer**
 
-Frontend / Full Stack Developer in progress.
 
----
-
-## 📄 License
-
-This project was created for educational and assignment purposes.
-
-```
-
-### এখন কী করবে
-
-1. `README.md` খুলবে
-2. পুরোনো সব লেখা **delete** করবে
-3. উপরের পুরো README **copy-paste** করবে
-4. `Ctrl + S` দিয়ে save করবে
-
-তারপর আমাকে শুধু **`Done`** বলো।
-
-এরপর আমরা **Step 2 — Git commits check** শুরু করব।
